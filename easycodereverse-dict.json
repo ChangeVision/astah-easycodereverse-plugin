@@ -1,0 +1,14 @@
+{
+	"trac": {
+		"urlPattern": "(.*)/browser/(.*)\\?rev=(.*)",
+		"rawUrls": ["$1/export/$3/$2"]
+	}
+	,"atlassian-fisheye-post-rev": {
+		"urlPattern": "//(.*).atlassian.com/browse/(?!~raw)(.*).java\\?r=(.*)",
+		"rawUrls": ["//$1.atlassian.com/browse/~raw,r=$3/$2.java"]
+	}
+	,"atlassian-fisheye-head": {
+		"urlPattern": "//(.*).atlassian.com/browse/(?!~raw)(.*).java$",
+		"rawUrls": ["//$1.atlassian.com/browse/~raw,r=HEAD/$2.java"]
+	}
+}

@@ -1,0 +1,43 @@
+<configuration>
+  <define name="astah.edition" class="com.change_vision.astah.extension.plugin.easycodereverse.internal.AstahEditionPropertyDefiner"/>
+  
+  <appender name="STDOUT"
+   class="ch.qos.logback.core.ConsoleAppender">
+   <layout class="ch.qos.logback.classic.PatternLayout">
+     <Pattern>
+        %d %-5p %c %X - %m%n
+      </Pattern>
+    </layout>
+  </appender>
+
+<!-- 
+  <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+    <Marker>load</Marker>
+    <OnMatch>DENY</OnMatch>
+  </turboFilter>
+ -->
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${user.home}/.astah/${astah.edition}/easycodereverse.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>${user.home}/.astah/${astah.edition}/easycodereverse.%i.log.zip</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>3</MaxIndex>
+    </rollingPolicy>
+
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>1MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d %-5p %c %X - %m%n</Pattern>
+    </layout>
+  </appender>
+  <!-- turn OFF all logging (children can override) -->
+  <logger name="com.change_vision.astah.extension.plugin.easycodereverse.internal.parser" level="${root-log-level:-WARN}"/>
+
+  <root level="${root-log-level:-WARN}">
+    <appender-ref ref="FILE" />
+    <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>
