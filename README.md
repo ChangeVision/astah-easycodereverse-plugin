@@ -1,5 +1,5 @@
 # [Easy Code Reverse](http://astah.net/features/code-reverse-plugin)
-This enables you to reverse Java source code on Github, Bitbucket, Google Project Hosting and other repository services into UML Class Diagram just by drag and drop the URL to Astah, also you can drag and drop .java files directly to Astah to do the same to instantly make the source code visible.
+This enables you to reverse Java source code on Github, Bitbucket, Google Project Hosting and other repository services into UML Class Diagram just by drag and drop the URL to [Astah](http://astah.net), also you can drag and drop .java files directly to Astah to do the same to instantly make the source code visible.
 
 **Demo Movie**
 
@@ -22,7 +22,9 @@ Astah Professional, Astah UML (6.5 or later)
 
 
 ## How to install
-1. Deploy the jar file in the "plugins" folder under the **Astah User Home folder** or the **Astah Install folder**
+1. Deploy the jar file you downloaded from Astah Easy Code Reverse, in the **"plugins"** folder…
+
+   <https://github.com/ChangeVision/astah-easycodereverse-plugin/downloads>
 
    e.g.) for Professional edition
    
@@ -65,10 +67,15 @@ Drag & drop .java files from local workplace or URL/Link of Java source code on 
 
 ## URL used in Demo Movie
 * Github:
+
   <https://github.com/KentBeck/junit/blob/master/src/main/java/junit/extensions/ActiveTestSuite.java>
-* Google Project Hosting
+
+* Google Project Hosting:
+
   <http://code.google.com/p/google-web-toolkit/source/browse/trunk/dev/core/src/com/google/gwt/dev/GWTShell.java>
-* Bitbucket
+
+* Bitbucket:
+
   <https://bitbucket.org/jmurty/jets3t/src/844ad30e3c13/src/org/jets3t/service/S3ServiceException.java>
 
 
@@ -76,6 +83,7 @@ Drag & drop .java files from local workplace or URL/Link of Java source code on 
 **easycodereverse-dict.json** is used to convert the URL to extract only the source code from the repository to Astah. By customizing this file, you will be able to reverse source code on Redmine or SourceForge.
 
 e.g.)
+
 **With revisions**
 
 <https://fisheye2.atlassian.com/browse/mockito/trunk/src/org/mockito/Answers.java?r=1928>
