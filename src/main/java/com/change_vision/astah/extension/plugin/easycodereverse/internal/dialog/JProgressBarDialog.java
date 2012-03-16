@@ -1,5 +1,7 @@
 package com.change_vision.astah.extension.plugin.easycodereverse.internal.dialog;
 
+import java.io.File;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
@@ -12,6 +14,7 @@ import org.slf4j.MarkerFactory;
 
 import com.change_vision.jude.api.inf.ui.IMessageDialogHandler;
 import com.change_vision.jude.api.inf.ui.IMessageDialogHandlerFactory;
+import com.change_vision.astah.extension.plugin.easycodereverse.internal.AstahAPIHandler;
 import com.change_vision.astah.extension.plugin.easycodereverse.internal.Messages;
 
 @SuppressWarnings("serial")
@@ -43,12 +46,14 @@ public class JProgressBarDialog extends JDialog implements IProgress {
 	public void showErrorMessage(Exception e, String message) {
 		if(dialogHandler == null) {
 			IMessageDialogHandlerFactory factory = (IMessageDialogHandlerFactory)tracker.getService();
-			dialogHandler = factory.createMessageDialogHandler(new Messages(), ".astah\\plugins\\easycodereverse");
+			String edition = new AstahAPIHandler().getEdition();
+			// .astah/professional/easycodereverse.log
+			String logFileRelatedPath = ".astah" + File.separator + edition.toLowerCase() + File.separator + "easycodereverse.log";
+			dialogHandler = factory.createMessageDialogHandler(new Messages(), File.separator + logFileRelatedPath);
 		}
 		if(logger.isErrorEnabled(marker)) {
 			logger.error("error has occured.",e);
 		}
 		dialogHandler.showErrorMessage(getParent(), message);
 	}
-
 }
