@@ -1,4 +1,4 @@
-# [Easy Code Reverse](http://astah.net/features/code-reverse-plugin)
+# [Astah Easy Code Reverse Plug-in](http://astah.net/features/code-reverse-plugin)
 This enables you to reverse Java source code on Github, Bitbucket, Google Project Hosting and other repository services into UML Class Diagram just by drag and drop the URL to [Astah](http://astah.net), also you can drag and drop .java files directly to Astah to do the same to instantly make the source code visible.
 
 **Demo Movie**
@@ -24,9 +24,9 @@ Astah Professional, Astah UML (6.5 or later)
 ## How to install
 1. Deploy the jar file you downloaded from Astah Easy Code Reverse, in the **"plugins"** folder…
 
-   <https://github.com/ChangeVision/astah-easycodereverse-plugin/downloads>
+    <https://github.com/ChangeVision/astah-easycodereverse-plugin/downloads>
 
-   e.g.) for Professional edition
+    e.g.) for Professional edition
    
    `$USER_HOME/.astah/professional/plugins/`
    
@@ -34,7 +34,7 @@ Astah Professional, Astah UML (6.5 or later)
    
    `C:¥Program Files¥astah-professional¥plugins/`
    
-   e.g.) for UML edition
+    e.g.) for UML edition
    
    `$USER_HOME/.astah/uml/plugins/`
    
@@ -42,7 +42,7 @@ Astah Professional, Astah UML (6.5 or later)
    
    `C:¥Program Files¥astah-UML¥plugins¥`
 
-1. Deploy the **easycodereverse-dict.json** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
+2. Deploy the **easycodereverse-dict.json** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
 
 
 ## How to work
