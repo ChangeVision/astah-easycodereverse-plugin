@@ -22,11 +22,9 @@ Astah Professional, Astah UML (6.5 or later)
 
 
 ## How to install
-1. Deploy the jar file you downloaded from Astah Easy Code Reverse, in the **"plugins"** folder…
+1. Deploy the jar file you downloaded from [Astah Easy Code Reverse](https://github.com/ChangeVision/astah-easycodereverse-plugin/downloads), in the **"plugins"** folder…
 
-    <https://github.com/ChangeVision/astah-easycodereverse-plugin/downloads>
-
-    e.g.) for Professional edition
+   e.g.) for Professional edition
    
    `$USER_HOME/.astah/professional/plugins/`
    
@@ -34,7 +32,7 @@ Astah Professional, Astah UML (6.5 or later)
    
    `C:¥Program Files¥astah-professional¥plugins/`
    
-    e.g.) for UML edition
+   e.g.) for UML edition
    
    `$USER_HOME/.astah/uml/plugins/`
    
@@ -42,7 +40,7 @@ Astah Professional, Astah UML (6.5 or later)
    
    `C:¥Program Files¥astah-UML¥plugins¥`
 
-2. Deploy the **easycodereverse-dict.json** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
+2. Deploy the **[easycodereverse-dict.json](https://github.com/ChangeVision/astah-easycodereverse-plugin/blob/master/easycodereverse-dict.json)** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
 
 
 ## How to work
@@ -80,7 +78,7 @@ Drag & drop .java files from local workplace or URL/Link of Java source code on 
 
 
 ## About easycodereverse-dict.json
-**easycodereverse-dict.json** is used to convert the URL to extract only the source code from the repository to Astah. By customizing this file, you will be able to reverse source code on Redmine or SourceForge.
+**[easycodereverse-dict.json](https://github.com/ChangeVision/astah-easycodereverse-plugin/blob/master/easycodereverse-dict.json)** is used to convert the URL to extract only the source code from the repository to Astah. By customizing this file, you will be able to reverse source code on Redmine or SourceForge.
 
 e.g.)
 
