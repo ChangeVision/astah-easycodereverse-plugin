@@ -30,7 +30,7 @@ import com.change_vision.astah.extension.plugin.easycodereverse.internal.model.C
 import com.change_vision.astah.extension.plugin.easycodereverse.internal.parser.SourceCodeParser;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 
-final class ParseWorker extends SwingWorker<ClassInfo, Object> {
+final class ParseWorker extends SwingWorker<List<ClassInfo>, Object> {
 	private final JProgressBarDialog dialog;
 	private final String urlString;
 	private final SourceCodeParser<ClassInfo> parser;
@@ -59,30 +59,32 @@ final class ParseWorker extends SwingWorker<ClassInfo, Object> {
 	}
 
 	@Override
-	protected ClassInfo doInBackground() throws Exception {
+	protected List<ClassInfo> doInBackground() throws Exception {
 		if(logger.isInfoEnabled(marker)) {
 			logger.trace("start to parse.");
 		}
 
-		ClassInfo model = null;
+		List<ClassInfo> classes = null;
 		if (isFile(urlString)) {
-			model = parseCodeFromFile();
+			classes = parseCodeFromFile();
 		} else {
 			for (String rawUrl : lookup(urlString)) {
-				model = parseCodeFromUrl(rawUrl);
-				if (model != null) break;
+				classes = parseCodeFromUrl(rawUrl);
+				if (classes != null) break;
 			}
 		}
 		
-		return model;
+		return classes;
 	}
 
 	@Override
 	protected void done() {
 		try {
-			ClassInfo model = get();
-			if (model != null) {
-				new AstahModelBuilder(model, location).build(isInTransaction);
+			List<ClassInfo> classes = get();
+			if (classes != null) {
+				for (ClassInfo classInfo : classes) {
+					new AstahModelBuilder(classInfo, location).build(isInTransaction);
+				}
 			}
 		} catch (InterruptedException e) {
 			logger.warn(e.getLocalizedMessage(), e);
@@ -100,7 +102,7 @@ final class ParseWorker extends SwingWorker<ClassInfo, Object> {
 		}
 	}
 	
-	private ClassInfo parseCodeFromFile() throws IOException, ParseException {
+	private List<ClassInfo> parseCodeFromFile() throws IOException, ParseException {
 		FileInputStream fis = null;
 		File srcFile = new File(urlString);
 		if (isTarget(srcFile)) {
@@ -116,7 +118,7 @@ final class ParseWorker extends SwingWorker<ClassInfo, Object> {
 		return null;
 	}
 
-	private ClassInfo parseCodeFromUrl(String rawUrl) throws IOException, ParseException {
+	private List<ClassInfo> parseCodeFromUrl(String rawUrl) throws IOException, ParseException {
 		try {
 			HttpURLConnection conn = getConnection(rawUrl);
 			conn.connect();
