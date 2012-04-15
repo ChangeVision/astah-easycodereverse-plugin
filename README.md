@@ -17,7 +17,6 @@ Astah Professional, Astah UML (6.5 or later)
 
 ## This Plug-in does not currently support to
 * analyze annotations
-* analyze Inner Classes or Classes with enum fully
 * create Associations in Class Diagram
 
 
