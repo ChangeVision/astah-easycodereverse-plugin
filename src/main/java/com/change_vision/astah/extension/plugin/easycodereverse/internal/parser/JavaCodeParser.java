@@ -38,10 +38,8 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 	
 	private CompilationUnit unit;
 
-	public ClassInfo parse(InputStream is) throws IOException, ParseException {
-		final List<FieldInfo> fields = new ArrayList<FieldInfo>();
-		final List<MethodInfo> methods = new ArrayList<MethodInfo>();
-		final ClassInfo classInfo = new ClassInfo("", fields, methods);
+	public List<ClassInfo> parse(InputStream is) throws IOException, ParseException {
+		final List<ClassInfo> classes = new ArrayList<ClassInfo>();
 
 		try {
 			unit = japa.parser.JavaParser.parse(is);
@@ -51,6 +49,18 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 
 		new VoidVisitorAdapter<Object>() {
 			Map<String, String> importMap = new HashMap<String, String>();
+			ClassInfo currentClass;
+			
+			@Override
+			public 
+			void visit(CompilationUnit unit, Object arg) {
+				if (currentClass == null) {
+					currentClass = new ClassInfo("", new ArrayList<FieldInfo>(), new ArrayList<MethodInfo>());
+					classes.add(currentClass);					
+				}
+
+				super.visit(unit, arg);
+			}
 			
 			@Override
 			public void visit(ImportDeclaration node, Object arg) {
@@ -60,30 +70,36 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 			
 			@Override
 			public void visit(EnumDeclaration node, Object arg) {
-				classInfo.setLine(node.getBeginLine());
+				if (StringUtils.isNotBlank(currentClass.getName())) {
+					currentClass = new ClassInfo("", new ArrayList<FieldInfo>(), new ArrayList<MethodInfo>());
+					classes.add(currentClass);
+				}
+				
+				currentClass.setLine(node.getBeginLine());
 
 				String name = node.getName();
 				PackageDeclaration packageDec = unit.getPackage();
-				classInfo.setQualifiedTypeName((packageDec != null) ? packageDec.getName() + "." + name : name);
-				classInfo.setName(name);
+				currentClass.setQualifiedTypeName((packageDec != null) ? packageDec.getName() + "." + name : name);
+				currentClass.setName(name);
 				
-				classInfo.setEnum(true);
-				classInfo.setAbstract(ModifierSet.isAbstract(node.getModifiers()));
-				classInfo.setFinal(ModifierSet.isFinal(node.getModifiers()));
-				classInfo.setStatic(ModifierSet.isStatic(node.getModifiers()));
-				classInfo.setStrictfp(ModifierSet.isStrictfp(node.getModifiers()));
-				classInfo.setPublic(ModifierSet.isPublic(node.getModifiers()));
+				currentClass.setEnum(true);
+				currentClass.setAbstract(ModifierSet.isAbstract(node.getModifiers()));
+				currentClass.setFinal(ModifierSet.isFinal(node.getModifiers()));
+				currentClass.setStatic(ModifierSet.isStatic(node.getModifiers()));
+				currentClass.setStrictfp(ModifierSet.isStrictfp(node.getModifiers()));
+				currentClass.setPublic(ModifierSet.isPublic(node.getModifiers()));
 
 				super.visit(node, arg);
 			}
 			
 			@Override
 			public void visit(ClassOrInterfaceDeclaration node, Object arg) {
-				if (StringUtils.isNotBlank(classInfo.getName())) {
-					return;
+				if (StringUtils.isNotBlank(currentClass.getName())) {
+					currentClass = new ClassInfo("", new ArrayList<FieldInfo>(), new ArrayList<MethodInfo>());
+					classes.add(currentClass);
 				}
 
-				classInfo.setLine(node.getBeginLine());
+				currentClass.setLine(node.getBeginLine());
 
 				List<TypeParameter> typeParameters = node.getTypeParameters();
 				if (typeParameters != null && typeParameters.size() > 0) {
@@ -93,23 +109,23 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 						parameterInfo.setName(typeParameter.getName());
 						
 					}
-					classInfo.setTypeArgs(parameters);
+					currentClass.setTypeArgs(parameters);
 				}
 
 				String name = node.getName();
 				PackageDeclaration packageDec = unit.getPackage();
-				classInfo.setQualifiedTypeName((packageDec != null) ? packageDec.getName() + "." + name : name);
-				classInfo.setName(name);
+				currentClass.setQualifiedTypeName((packageDec != null) ? packageDec.getName() + "." + name : name);
+				currentClass.setName(name);
 				
-				classInfo.setInterface(node.isInterface());
-				classInfo.setAbstract(ModifierSet.isAbstract(node.getModifiers()));
-				classInfo.setFinal(ModifierSet.isFinal(node.getModifiers()));
-				classInfo.setStatic(ModifierSet.isStatic(node.getModifiers()));
-				classInfo.setStrictfp(ModifierSet.isStrictfp(node.getModifiers()));
-				classInfo.setPublic(ModifierSet.isPublic(node.getModifiers()));
+				currentClass.setInterface(node.isInterface());
+				currentClass.setAbstract(ModifierSet.isAbstract(node.getModifiers()));
+				currentClass.setFinal(ModifierSet.isFinal(node.getModifiers()));
+				currentClass.setStatic(ModifierSet.isStatic(node.getModifiers()));
+				currentClass.setStrictfp(ModifierSet.isStrictfp(node.getModifiers()));
+				currentClass.setPublic(ModifierSet.isPublic(node.getModifiers()));
 				
-				copyExtendsInfo(node, classInfo);
-				copyImplementsInfo(node, classInfo);
+				copyExtendsInfo(node, currentClass);
+				copyImplementsInfo(node, currentClass);
 
 				super.visit(node, arg);
 			}
@@ -167,6 +183,7 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 
 			@Override
 			public void visit(FieldDeclaration node, Object arg) {
+				List<FieldInfo> fields = currentClass.getFields();
 				FieldInfo fieldInfo = new FieldInfo();
 				fieldInfo.setLine(node.getBeginLine());
 				
@@ -196,6 +213,7 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 
 			@Override
 			public void visit(MethodDeclaration node, Object arg) {
+				List<MethodInfo> methods = currentClass.getMethods();
 				MethodInfo methodInfo = new MethodInfo();
 				methodInfo.setLine(node.getBeginLine());
 				
@@ -268,7 +286,7 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 			}
 		}.visit(unit, null);
 
-		logger.info("Parse finished: " + classInfo.getName());
-		return classInfo;
+		logger.info("Parse finished");
+		return classes;
 	}
 }
