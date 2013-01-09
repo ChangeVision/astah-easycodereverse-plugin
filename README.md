@@ -39,7 +39,7 @@ Astah Professional, Astah UML (6.5 or later)
    
    `C:¥Program Files¥astah-UML¥plugins¥`
 
-2. Deploy the **[easycodereverse-dict.json](http://cdn.change-vision.com/plugins/easycodereverse-dict.json)** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
+2. Deploy the **[easycodereverse-dict.json](https://github.com/ChangeVision/astah-easycodereverse-plugin/blob/master/easycodereverse-dict.json)** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
 
 
 ## How to work
