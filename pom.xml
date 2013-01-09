@@ -11,7 +11,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.change_vision.astah.extension.plugin</groupId>
 	<artifactId>easycodereverse</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Easy Code Reverse</name>
 	<description>Visualize your software design with Astah class diagrams instantly from Github, Bitbucket, and more with just a drag and drop!</description>
