@@ -1,11 +1,13 @@
 package com.change_vision.astah.extension.plugin.easycodereverse.internal;
 
+import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.osgi.util.tracker.ServiceTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +29,7 @@ import com.change_vision.astah.extension.plugin.easycodereverse.internal.parser.
 import com.change_vision.jude.api.inf.editor.ITransactionManager;
 import com.change_vision.jude.api.inf.model.IClassDiagram;
 import com.change_vision.jude.api.inf.view.DiagramDropTargetListener;
+import com.change_vision.jude.api.inf.view.IDiagramViewManager;
 
 public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 	@SuppressWarnings("unused")
@@ -46,10 +50,6 @@ public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 	public void dropExternalData(DropTargetDropEvent dtde) {
 		if(dtde.isLocalTransfer()) return;
 		
-		DataFlavor[] currentDataFlavors = dtde.getCurrentDataFlavors();
-		for (DataFlavor df : currentDataFlavors) {
-			System.out.println(df);
-		}
 		if (dtde.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
 			List<File> files = null;
 			if (canPreCheckSupportedFiles()) {
@@ -81,7 +81,7 @@ public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 				transactionManager.beginTransaction();
 				for (File file : files) {
 					ParseWorker worker = new ParseWorker(dialog, new JavaCodeParser(), 
-							file.getAbsolutePath(), dtde.getLocation(), false);
+							file.getAbsolutePath(), getLocation(dtde), false);
 					worker.execute();
 					workers.add(worker);
 					dialog.setVisible(true);
@@ -99,13 +99,24 @@ public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 			JProgressBarDialog dialog = new JProgressBarDialog(parent, tracker);
 			
 			ParseWorker worker = new ParseWorker(dialog, new JavaCodeParser(), 
-					getURLStringFromDropContent(dtde), dtde.getLocation());
+					getURLStringFromDropContent(dtde), getLocation(dtde));
 			worker.execute();
 			
 			dialog.setVisible(true);
 			dtde.dropComplete(true);
 			layout(worker);
 		}
+	}
+	
+	private Point getLocation(DropTargetDropEvent dtde) {
+		Point location = dtde.getLocation();
+		if (canUseToWorldCoordAPI()) {
+			IDiagramViewManager viewManager = handler.getDiagramViewManager();
+			Point2D worldCoordLocation = viewManager.toWorldCoord(location.x, location.y);
+			location = new Point((int) worldCoordLocation.getX(), (int) worldCoordLocation.getY());
+		}
+		
+		return location;
 	}
 
 	private void layout(ParseWorker worker) {
@@ -137,23 +148,23 @@ public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 		}
 	}
 	
-	private float getAstahAPIVersion() {
-		float astahAPIVersion = 0f;
-		
-		try {
-			String astahAPIVersionStr = handler.getProjectAccessor().getAstahAPIVersion();
-			astahAPIVersion = Float.parseFloat(astahAPIVersionStr);
-		} catch (NumberFormatException e) {
-		}
-		return astahAPIVersion;
+	private int compareAstahAPIVersionTo(String target) {
+		String astahAPIVersionStr = handler.getProjectAccessor().getAstahAPIVersion();
+		DefaultArtifactVersion astahAPIVersion = new DefaultArtifactVersion(astahAPIVersionStr);
+		DefaultArtifactVersion targetVersion = new DefaultArtifactVersion(target);
+		return astahAPIVersion.compareTo(targetVersion);
 	}
 	
 	private boolean canPreCheckSupportedFiles() {
-		return (6.6f <= getAstahAPIVersion());
+		return compareAstahAPIVersionTo("6.6") >= 0;
 	}
 
 	private boolean canLayout() {
-		return (6.5f <= getAstahAPIVersion());
+		return compareAstahAPIVersionTo("6.5") >= 0;
+	}
+	
+	private boolean canUseToWorldCoordAPI() {
+		return compareAstahAPIVersionTo("6.6.4") >= 0;
 	}
 
 	private String getURLStringFromDropContent(DropTargetDropEvent dtde) {
