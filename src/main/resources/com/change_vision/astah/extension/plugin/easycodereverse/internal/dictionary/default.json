@@ -5,7 +5,7 @@
 	},
 	"GoogleCodeHosting": {
 		"urlPattern": "//code.google.com/p/(.*)/source/browse",
-		"rawUrls": ["//$1.googlecode.com/svn", "//$1.googlecode.com/hg"]
+		"rawUrls": ["//$1.googlecode.com/git", "//$1.googlecode.com/svn", "//$1.googlecode.com/hg"]
 	},
 	"BitBucket": {
 		"urlPattern": "//bitbucket.org/(.*)/src/(.*)/src/(.*)",
