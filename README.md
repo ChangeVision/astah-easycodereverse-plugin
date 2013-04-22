@@ -21,7 +21,7 @@ Astah Professional, Astah UML (6.5 or later)
 
 
 ## How to install
-1. Deploy the jar file you downloaded from [Astah Easy Code Reverse](http://cdn.change-vision.com/plugins/easycodereverse-1.0.1.jar), in the **"plugins"** folder…
+1. Deploy the jar file you downloaded from [Astah Easy Code Reverse](http://astah.change-vision.com/plugins/easycodereverse/1.0.1.html), in the **"plugins"** folder…
 
    e.g.) for Professional edition
    
