@@ -21,7 +21,7 @@ astah* professional, astah* UML (6.5 or later)
 
 
 ## インストール方法
-1. [ここから](http://cdn.change-vision.com/plugins/easycodereverse-1.0.1.jar).jarファイルをダウンロードし、プラグインフォルダへコピーします。
+1. [ここから](http://astah.change-vision.com/plugins/easycodereverse/1.0.1.html).jarファイルをダウンロードし、プラグインフォルダへコピーします。
 
    例) professional edition
    
