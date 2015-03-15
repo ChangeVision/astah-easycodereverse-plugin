@@ -50,7 +50,18 @@ public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 	public void dropExternalData(DropTargetDropEvent dtde) {
 		if(dtde.isLocalTransfer()) return;
 		
-		if (dtde.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+		if (dtde.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+			JFrame parent = handler.getMainFrame();
+			JProgressBarDialog dialog = new JProgressBarDialog(parent, tracker);
+			
+			ParseWorker worker = new ParseWorker(dialog, new JavaCodeParser(), 
+					getURLStringFromDropContent(dtde), getLocation(dtde));
+			worker.execute();
+			
+			dialog.setVisible(true);
+			dtde.dropComplete(true);
+			layout(worker);
+		} else if (dtde.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
 			List<File> files = null;
 			if (canPreCheckSupportedFiles()) {
 				files = getFilesFromDropContent(dtde);
@@ -94,17 +105,6 @@ public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 			
 			layout(workers);
 			dtde.dropComplete(true);
-		} else if (dtde.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-			JFrame parent = handler.getMainFrame();
-			JProgressBarDialog dialog = new JProgressBarDialog(parent, tracker);
-			
-			ParseWorker worker = new ParseWorker(dialog, new JavaCodeParser(), 
-					getURLStringFromDropContent(dtde), getLocation(dtde));
-			worker.execute();
-			
-			dialog.setVisible(true);
-			dtde.dropComplete(true);
-			layout(worker);
 		}
 	}
 	
