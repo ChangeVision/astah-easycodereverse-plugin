@@ -103,14 +103,19 @@ final class ParseWorker extends SwingWorker<List<ClassInfo>, Object> {
 	}
 	
 	private List<ClassInfo> parseCodeFromFile() throws IOException, ParseException {
-		FileInputStream fis = null;
-		File srcFile = new File(urlString);
+        File srcFile = null;
+        try {
+            srcFile = new File(URI.create(urlString));
+        } catch (IllegalArgumentException e) {
+            srcFile = new File(urlString);
+        }
 		if (isTarget(srcFile)) {
+            FileInputStream fis = null;
 			try {
 				fis = FileUtils.openInputStream(srcFile);
 				return parser.parse(fis);
 			} catch (IOException e) {
-				throw new IOException(Messages.getMessage("parse_worker.error.loading"), e);
+                throw new IOException(Messages.getMessage("parse_worker.error.load"), e);
 			} finally {
 				if (fis != null) {try {fis.close();} catch (IOException e) {}}
 			}
