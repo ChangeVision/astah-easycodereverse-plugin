@@ -173,7 +173,7 @@ public final class ClassDiagramDropExtension extends DiagramDropTargetListener {
 
 		String urlString;
 		try {
-			urlString = (String)target.getTransferData(DataFlavor.stringFlavor);
+            urlString = String.class.cast(target.getTransferData(DataFlavor.stringFlavor)).trim();
 		} catch (Exception e) {
 			urlString = "";
 		}
