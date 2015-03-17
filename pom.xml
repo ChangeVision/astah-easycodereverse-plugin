@@ -5,7 +5,7 @@
 		<bundle.symbolicName>com.change_vision.astah.extension.plugin.easycodereverse</bundle.symbolicName>
 		<bundle.namespace>com.change_vision.astah.extension.plugin.easycodereverse</bundle.namespace>
 		<plugin.install>true</plugin.install>
-		<astah.version>6.5</astah.version>
+		<astah.version>6.6.4</astah.version>
 		<astah.edition>uml,pro</astah.edition>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
