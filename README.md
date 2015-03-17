@@ -7,7 +7,7 @@ This enables you to reverse Java source code on Github, Bitbucket, Google Projec
 
 
 ## Available for
-Astah Professional, Astah UML (6.5 or later)
+Astah Professional, Astah UML (6.6.4 or later)
 
 
 ## Ability
@@ -21,25 +21,10 @@ Astah Professional, Astah UML (6.5 or later)
 
 
 ## How to install
-1. Deploy the jar file you downloaded from [Astah Easy Code Reverse](http://astah.change-vision.com/plugins/easycodereverse/1.0.1.html), in the **"plugins"** folder…
-
-   e.g.) for Professional edition
-   
-   `$USER_HOME/.astah/professional/plugins/`
-   
-   `/Applications/astah professional/plguins/`
-   
-   `C:¥Program Files¥astah-professional¥plugins/`
-   
-   e.g.) for UML edition
-   
-   `$USER_HOME/.astah/uml/plugins/`
-   
-   `/Applications/astah UML/plguins/`
-   
-   `C:¥Program Files¥astah-UML¥plugins¥`
-
-2. Deploy the **[easycodereverse-dict.json](https://raw.github.com/ChangeVision/astah-easycodereverse-plugin/master/easycodereverse-dict.json)** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
+1. Download the Easy Code Reverse Plug-in (.jar file) from [here](http://astah.change-vision.com/plugins/easycodereverse/1.0.2.html).
+2. Run Astah and go to [Help] - [Plugin List] menu and click [Install] button. 
+3. Select the .jar file and restart Astah. 
+4. Deploy the **[easycodereverse-dict.json](https://raw.github.com/ChangeVision/astah-easycodereverse-plugin/master/easycodereverse-dict.json)** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`
 
 
 ## How to work

@@ -7,7 +7,7 @@ GithubやBitbucket、Google Project等ほかのリポジトリサービスにあ
 
 
 ## Available for
-astah* professional, astah* UML (6.5 or later)
+astah* professional, astah* UML (6.6.4 or later)
 
 
 ## Ability
@@ -21,27 +21,11 @@ astah* professional, astah* UML (6.5 or later)
 
 
 ## インストール方法
-1. [ここから](http://astah.change-vision.com/plugins/easycodereverse/1.0.1.html).jarファイルをダウンロードし、プラグインフォルダへコピーします。
-
-   例) professional edition
-   
-   `$USER_HOME/.astah/professional/plugins/`
-   
-   `/Applications/astah professional/plguins/`
-   
-   `C:¥Program Files¥astah-professional¥plugins/`
-   
-   例) UML edition
-   
-   `$USER_HOME/.astah/uml/plugins/`
-   
-   `/Applications/astah UML/plguins/`
-   
-   `C:¥Program Files¥astah-UML¥plugins¥`
-
-2. リポジトリをカスタマイズしたい場合は、[easycodereverse-dict.json](https://raw.github.com/ChangeVision/astah-easycodereverse-plugin/master/easycodereverse-dict.json)をダウンロードし、`$USER_HOME/.astah/professional/` もしくは、 `$USER_HOME/.astah/uml/`へコピーします
-
-
+1. [ここから](http://astah.change-vision.com/plugins/easycodereverse/1.0.2.html).jarファイルをダウンロードします
+2. メインメニュー[ヘルプ] – [プラグイン一覧]を選択します
+3. [インストール] ボタンを押下して.jarファイルを選択します(バージョン6.8以降は、.jarファイルをastah*にドラッグ＆ドロップしてインストールできます)
+4. メッセージに従ってastah*を再起動してください
+5. リポジトリをカスタマイズしたい場合は、[easycodereverse-dict.json](https://raw.github.com/ChangeVision/astah-easycodereverse-plugin/master/easycodereverse-dict.json)をダウンロードし、`$USER_HOME/.astah/professional/` もしくは、 `$USER_HOME/.astah/uml/`へコピーします
 
 
 ## ビルド方法
