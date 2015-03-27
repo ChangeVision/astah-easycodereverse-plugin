@@ -1,5 +1,5 @@
 # [astah* 簡単コードリバース プラグイン](http://astah.change-vision.com/ja/feature/code-reverse-plugin.html)
-GithubやBitbucket、Google Project等ほかのリポジトリサービスにあるJavaコードを直接ドラッグ＆ドロップでastha*へリバースすることができます。
+GithubやBitbucket、Google Project等ほかのリポジトリサービスにあるJavaコードを直接ドラッグ＆ドロップでastah*へリバースすることができます。
 
 **Demo Movie**
 
@@ -55,7 +55,7 @@ astah* professional, astah* UML (6.6.4 or later)
 
 
 ## easycodereverse-dict.json について
-**[easycodereverse-dict.json](https://github.com/ChangeVision/astah-easycodereverse-plugin/blob/master/easycodereverse-dict.json)** をカスタマイズすることで、redmineやSourceForgeのソースもリバースすることが可能です。
+**[easycodereverse-dict.json](https://github.com/ChangeVision/astah-easycodereverse-plugin/blob/master/easycodereverse-dict.json)** をカスタマイズすることで、redmineやSourceForgeのソースもリバースできるようになります。
 
 
 例)
