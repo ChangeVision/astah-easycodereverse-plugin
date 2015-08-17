@@ -44,10 +44,6 @@
 			<id>uk-central</id>
 			<url>http://uk.maven.org/maven2/</url>
 		</repository>
-		<repository>
-			<id>local_project_repository</id>
-			<url>file://${basedir}/m2repo</url>
-		</repository>
 	</repositories>
 	<reporting>
 		<plugins>
@@ -304,9 +300,9 @@
 			<version>20090211</version>
 		</dependency>
 		<dependency>
-			<groupId>japa.parser</groupId>
-			<artifactId>javaparser</artifactId>
-			<version>1.0.8</version>
+			<groupId>com.github.javaparser</groupId>
+			<artifactId>javaparser-core</artifactId>
+			<version>2.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>

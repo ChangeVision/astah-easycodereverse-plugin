@@ -1,18 +1,18 @@
 package com.change_vision.astah.extension.plugin.easycodereverse.internal.parser;
 
-import japa.parser.ast.CompilationUnit;
-import japa.parser.ast.ImportDeclaration;
-import japa.parser.ast.PackageDeclaration;
-import japa.parser.ast.TypeParameter;
-import japa.parser.ast.body.ClassOrInterfaceDeclaration;
-import japa.parser.ast.body.EnumDeclaration;
-import japa.parser.ast.body.FieldDeclaration;
-import japa.parser.ast.body.MethodDeclaration;
-import japa.parser.ast.body.ModifierSet;
-import japa.parser.ast.body.Parameter;
-import japa.parser.ast.body.VariableDeclarator;
-import japa.parser.ast.type.ClassOrInterfaceType;
-import japa.parser.ast.visitor.VoidVisitorAdapter;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.ImportDeclaration;
+import com.github.javaparser.ast.PackageDeclaration;
+import com.github.javaparser.ast.TypeParameter;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.EnumDeclaration;
+import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.ModifierSet;
+import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,8 +42,8 @@ public class JavaCodeParser implements SourceCodeParser<ClassInfo> {
 		final List<ClassInfo> classes = new ArrayList<ClassInfo>();
 
 		try {
-			unit = japa.parser.JavaParser.parse(is);
-		} catch (japa.parser.ParseException e) {
+			unit = com.github.javaparser.JavaParser.parse(is);
+		} catch (com.github.javaparser.ParseException e) {
 			throw new ParseException(Messages.getMessage("parse_worker.error.parse"), e);
 		}
 
