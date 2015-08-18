@@ -49,4 +49,12 @@ public class JavaParserTest {
 		List<ClassInfo> classes = parser.parse(JavaParserTest.class.getResourceAsStream("MultiClasses.java"));
 		assertThat(classes.size(), is(7));
 	}
+	
+	@Test
+	public void parseLambda() throws Exception {
+		JavaCodeParser parser = new JavaCodeParser();
+		List<ClassInfo> classes = parser.parse(JavaParserTest.class.getResourceAsStream("Lambda.java"));
+		ClassInfo info = classes.get(0);
+		assertThat(info.getName(), is("Lambda"));
+	}
 }
