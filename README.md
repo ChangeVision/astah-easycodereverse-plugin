@@ -21,7 +21,7 @@ Astah Professional, Astah UML (6.6.4 or later)
 
 
 ## How to install
-1. Download the Easy Code Reverse Plug-in (.jar file) from [here](http://astah.change-vision.com/plugins/easycodereverse/1.0.2.html).
+1. Download the Easy Code Reverse Plug-in (.jar file) from [here](http://astah.change-vision.com/plugins/easycodereverse/1.0.3.html).
 2. Run Astah and go to [Help] - [Plugin List] menu and click [Install] button. 
 3. Select the .jar file and restart Astah. 
 4. Deploy the **[easycodereverse-dict.json](https://raw.github.com/ChangeVision/astah-easycodereverse-plugin/master/easycodereverse-dict.json)** file in `$USER_HOME/.astah/professional/` or `$USER_HOME/.astah/uml/`

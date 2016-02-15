@@ -21,7 +21,7 @@ astah* professional, astah* UML (6.6.4 or later)
 
 
 ## インストール方法
-1. [ここから](http://astah.change-vision.com/plugins/easycodereverse/1.0.2.html).jarファイルをダウンロードします
+1. [ここから](http://astah.change-vision.com/plugins/easycodereverse/1.0.3.html).jarファイルをダウンロードします
 2. メインメニュー[ヘルプ] – [プラグイン一覧]を選択します
 3. [インストール] ボタンを押下して.jarファイルを選択します(バージョン6.8以降は、.jarファイルをastah*にドラッグ＆ドロップしてインストールできます)
 4. メッセージに従ってastah*を再起動してください
